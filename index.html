@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mosaab Fragrance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+    }
+
+    .rectangle {
+      width: 100%;
+      height: 200px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      max-width: 200px;
+      transition: transform 0.3s;
+    }
+
+    .logo:hover,
+    .logo:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    main.products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    article.product {
+      width: 200px;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    article.product:hover,
+    article.product:focus-within {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      outline: none;
+    }
+
+    article.product a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+
+    article.product img {
+      max-width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    article.product:hover img {
+      transform: scale(1.05);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin: 10px 0 5px;
+      color: #222;
+      font-weight: 700;
+    }
+
+    .price {
+      color: #888;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background-color: #25D366;
+      padding: 12px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-float img {
+      width: 32px;
+      height: 32px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="rectangle" role="banner">
+    <img src="logo.png" alt="Mosaab Fragrance Logo" class="logo" tabindex="0" />
+  </header>
+
+  <main class="products" aria-label="Liste des parfums">
+
+    <article class="product">
+      <a href="product.html?name=9PM Afnan">
+        <img src="img/9pmafnan/1.jpg" alt="9PM Afnan" />
+        <h3>9PM Afnan</h3>
+        <p class="price">470,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=9PM Rebel">
+        <img src="img/ninepmrebel/1.jpg" alt="9PM Rebel" />
+        <h3>9PM Rebel</h3>
+        <p class="price">550,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Le Beau EDP">
+        <img src="img/lebeauedp/1.jpg" alt="Le Beau EDP" />
+        <h3>Le Beau EDP</h3>
+        <p class="price">1 150,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Le Beau EDT">
+        <img src="img/lebeauedt/1.jpg" alt="Le Beau EDT" />
+        <h3>Le Beau EDT</h3>
+        <p class="price">850,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Le Beau Paradise Garden 125ML">
+        <img src="img/paradise/1.jpg" alt="Le Beau Paradise Garden 125ML" />
+        <h3>Le Beau Paradise Garden 125ML</h3>
+        <p class="price">990,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Le Male Elixir">
+        <img src="img/elexir/1.jpg" alt="Le Male Elixir" />
+        <h3>Le Male Elixir</h3>
+        <p class="price">1 500,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Xerjoff Naxos">
+        <img src="img/naxos/1.jpg" alt="Xerjoff Naxos" />
+        <h3>Xerjoff Naxos</h3>
+        <p class="price">2 200,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Stronger With You">
+        <img src="img/stronger/1.jpg" alt="Stronger With You" />
+        <h3>Stronger With You</h3>
+        <p class="price">1 000,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Ultra Male">
+        <img src="img/ultamale/1.jpg" alt="Ultra Male" />
+        <h3>Ultra Male</h3>
+        <p class="price">850,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Uomo Valentino">
+        <img src="img/valentino/1.jpg" alt="Uomo Valentino" />
+        <h3>Uomo Valentino</h3>
+        <p class="price">1 000,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Versace Eros">
+        <img src="img/versaccceeros/1.jpg" alt="Versace Eros" />
+        <h3>Versace Eros</h3>
+        <p class="price">720,00 MAD</p>
+      </a>
+    </article>
+
+    <article class="product">
+      <a href="product.html?name=Xerjoff Erba Pura">
+        <img src="img/erbapurra/1.jpg" alt="Xerjoff Erba Pura" />
+        <h3>Xerjoff Erba Pura</h3>
+        <p class="price">2 600,00 MAD</p>
+      </a>
+    </article>
+
+  </main>
+
+  <!-- زر واتساب ثابت -->
+<a href="https://api.whatsapp.com/send/?phone=212723070966&text=Salam!%20Bghit%20nsewl%203la%20wa7d%20lparfum." 
+   class="whatsapp-float" 
+   target="_blank" 
+   aria-label="Contact via WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+       alt="WhatsApp" />
+</a>
+
+
+</body>
+</html>
