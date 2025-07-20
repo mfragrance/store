@@ -3,152 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mosaab Fragrance</title>
+  <title>Mosaab Fragrance - Tous les parfums</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      padding: 0;
-      background: #fdfdfd;
       font-family: 'Montserrat', sans-serif;
-      color: #333;
-    }
-
-    .rectangle {
-      width: 100%;
-      height: 200px;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .logo {
-      max-width: 200px;
-      transition: transform 0.3s;
-    }
-
-    .logo:hover,
-    .logo:focus {
-      transform: scale(1.05);
-      outline: none;
-    }
-
-    /* Title for Parfum Homme */
-    .parfum-homme-title {
-      font-size: 2rem;
-      font-weight: bold;
-      text-align: center;
+      background-color: #fefefe;
       color: #222;
-      margin-top: 40px;
     }
-
-    main.products {
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
-      gap: 20px;
-      padding: 40px 20px;
-      max-width: 1200px;
+      position: relative;
+    }
+    header .logo {
+      height: 110px;
+      width: auto;
       margin: 0 auto;
     }
-
-    article.product {
-      width: 200px;
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+    /* Container for icons */
+    .header-icons {
+      position: absolute;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    /* Search icon */
+    .search-icon, .panier-icon {
+      width: 28px;
+      height: 28px;
+      stroke: #333;
+      stroke-width: 2;
+      fill: none;
       cursor: pointer;
+      transition: stroke 0.3s;
     }
-
-    article.product:hover,
-    article.product:focus-within {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-      outline: none;
+    .search-icon:hover, .panier-icon:hover {
+      stroke: #e63946;
     }
-
-    article.product a {
-      color: inherit;
-      text-decoration: none;
-      display: block;
-    }
-
-    article.product img {
-      max-width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
-
-    article.product:hover img {
-      transform: scale(1.05);
-    }
-
-    h3 {
-      font-size: 1.1rem;
-      margin: 10px 0 5px;
+    /* Search input bar */
+    .search-bar {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      border: 1.5px solid #e63946;
+      border-radius: 20px;
+      padding: 6px 15px;
+      font-size: 1rem;
+      width: 200px;
       color: #222;
+      outline: none;
+      background: #fff;
+      box-shadow: 0 0 6px rgba(230, 57, 70, 0.4);
+      z-index: 110;
+    }
+    .search-bar.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Main content styling */
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    h2.section-title {
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e63946;
+      padding-bottom: 8px;
+      color: #e63946;
       font-weight: 700;
     }
-
-    .price {
-      color: #888;
-      font-size: 0.95rem;
+    /* Products grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+      gap: 20px;
+    }
+    article.product {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 15px;
+    }
+    article.product:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgb(230 57 70 / 0.3);
+    }
+    article.product img {
+      max-width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+    article.product h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
       font-weight: 600;
+      color: #222;
     }
-
-    /* WhatsApp button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 999;
-      background-color: #25D366;
-      padding: 12px;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
+    p.price {
+      font-weight: 700;
+      color: #e63946;
+      font-size: 1.1rem;
+      margin: 0;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-    }
-
-    .whatsapp-float img {
-      width: 32px;
-      height: 32px;
-    }
-
-    /* Responsive design for mobile */
-    @media (max-width: 768px) {
-      main.products {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 10px;
+    @media (max-width: 600px) {
+      main {
+        margin: 20px 10px;
       }
-
-      article.product {
-        width: 90%;
-        max-width: 320px;
+      article.product img {
+        height: 140px;
       }
-
-      .rectangle {
-        height: 120px;
-      }
-
-      .logo {
-        max-width: 150px;
-      }
-
-      h3 {
-        font-size: 1rem;
-      }
-
-      .price {
+      .search-bar {
+        width: 140px;
+        right: 50px;
         font-size: 0.9rem;
       }
     }
@@ -156,11 +156,30 @@
 </head>
 <body>
 
-  <header class="rectangle" role="banner">
-    <img src="logo.png" alt="Mosaab Fragrance Logo" class="logo" tabindex="0" />
-  </header>
+<header>
+  <img src="logo.png" alt="Mosaab Fragrance" class="logo" />
+  <div class="header-icons">
+    <a href="panier.html" title="Panier">
+      <!-- Panier (cart) SVG icon -->
+      <svg class="panier-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-label="Panier">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6H19m-12 0a1 1 0 11-2 0 1 1 0 012 0zm12 0a1 1 0 11-2 0 1 1 0 012 0z" />
+      </svg>
+    </a>
+    <div class="search-container" title="Rechercher">
+      <!-- Search SVG icon -->
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="Rechercher">
+        <circle cx="11" cy="11" r="7" />
+        <line x1="16.65" y1="16.65" x2="21" y2="21" />
+      </svg>
+      <input type="search" placeholder="Recherche..." class="search-bar" aria-label="Barre de recherche" />
+    
+    </div>
+  </div>
+</header>
 
-  <!-- Parfum Homme Title -->
+<main>
+
+    <!-- Parfum Homme Title -->
   <div class="parfum-homme-title">
     <h2>Parfum Homme</h2>
   </div>
@@ -251,7 +270,7 @@
       <a href="product.html?name=Versace Eros">
         <img src="img/versaccceeros/1.jpg" alt="Versace Eros" />
         <h3>Versace Eros</h3>
-        <p class="price">720,00 MAD</p>
+        <p class="price">1100.00 MAD</p>
       </a>
     </article>
 
@@ -321,18 +340,33 @@
   </article>
 </main>
 
- 
+<script>
+  const searchIcon = document.querySelector('.search-icon');
+  const searchBar = document.querySelector('.search-bar');
 
+  searchIcon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (searchBar.classList.contains('visible')) {
+      searchBar.classList.remove('visible');
+      searchBar.value = '';
+      searchBar.blur();
+    } else {
+      searchBar.classList.add('visible');
+      searchBar.focus();
+    }
+  });
 
+  document.addEventListener('click', () => {
+    searchBar.classList.remove('visible');
+    searchBar.value = '';
+    searchBar.blur();
+  });
 
-  
-  <!-- WhatsApp Button -->
-  <a href="https://api.whatsapp.com/send/?phone=212723070966&text=Salam!%20Bghit%20nsewl%203la%20wa7d%20lparfum." 
-     class="whatsapp-float" 
-     target="_blank" 
-     aria-label="Contact via WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-  </a>
+  // منع إغلاق البحث عند الضغط داخله
+  searchBar.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+</script>
 
 </body>
 </html>
