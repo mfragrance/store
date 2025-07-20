@@ -6,28 +6,64 @@
   <title>Détail du Parfum</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family:'Montserrat',sans-serif; margin:0; padding:20px; background:#fff; color:#333; }
-    a { text-decoration:none; color:#555; display:inline-block; margin-bottom:30px; }
-    a:hover { color:#e63946; }
-    .container { max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; gap:40px; }
-    .product-img { flex:1 1 350px; text-align:center; }
-    .product-img img { max-width:100%; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); }
-    .thumbnails { margin-top:15px; }
-    .thumbnails img { width:60px; margin:5px; border-radius:8px; cursor:pointer; border:2px solid transparent; transition:border .2s; }
-    .thumbnails img:hover { border-color:#e63946; }
-    .product-details { flex:1 1 400px; }
-    h1 { font-size:1.8rem; margin-bottom:10px; }
-    .price { font-size:1.4rem; margin:10px 0; }
-    .old-price { text-decoration:line-through; color:#999; margin-right:15px; }
-    .new-price { color:#e63946; font-weight:bold; }
-    .quantity { margin:20px 0; display:flex; align-items:center; gap:10px; }
-    .quantity button { width:30px; height:30px; font-size:18px; font-weight:bold; background:#e63946; color:#fff; border:none; border-radius:6px; cursor:pointer; }
-    .quantity input { width:50px; text-align:center; padding:5px; border:1px solid #ccc; border-radius:6px; }
-    .btn { background:#e63946; color:#fff; padding:10px 20px; border:none; border-radius:8px; font-size:16px; cursor:pointer; transition:.3s; margin-top:10px; }
-    .btn:hover { background:#b02631; }
-    details { margin-top:20px; background:#f8f8f8; padding:12px; border-radius:8px; }
-    summary { cursor:pointer; font-weight:bold; color:#e63946; }
-    @media(max-width:768px){ .container{flex-direction:column;align-items:center;} }
+    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; background: #fff; color: #333; }
+    a { text-decoration: none; color: #555; display: inline-block; margin-bottom: 30px; }
+    a:hover { color: #e63946; }
+    .container { max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; gap: 40px; }
+    .product-img { flex: 1 1 350px; text-align: center; }
+    .product-img img { max-width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .thumbnails { margin-top: 15px; }
+    .thumbnails img { width: 60px; margin: 5px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: border 0.2s; }
+    .thumbnails img:hover { border-color: #e63946; }
+    .product-details { flex: 1 1 400px; }
+    h1 { font-size: 1.8rem; margin-bottom: 10px; }
+    .price-container { margin: 15px 0; }
+    .old-price {
+      display: block;
+      font-size: 14px;
+      color: #8a8a8a;
+      text-decoration: line-through;
+      margin-bottom: 4px;
+      font-weight: 400;
+    }
+    .new-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: #222222;
+    }
+    .quantity { margin: 20px 0; display: flex; align-items: center; gap: 10px; }
+    .quantity button {
+      width: 30px; height: 30px; font-size: 18px; font-weight: bold;
+      background: #e63946; color: #fff; border: none; border-radius: 6px; cursor: pointer;
+    }
+    .quantity input {
+      width: 50px; text-align: center; padding: 5px; border: 1px solid #ccc; border-radius: 6px;
+    }
+    .btn {
+      background: #e63946; color: #fff; padding: 10px 20px; border: none; border-radius: 8px;
+      font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; display: inline-block;
+      text-align: center;
+    }
+    .btn:hover { background: #b02631; }
+    details { margin-top: 20px; background: #f8f8f8; padding: 12px; border-radius: 8px; }
+    summary { cursor: pointer; font-weight: bold; color: #e63946; }
+    @media (max-width: 768px) {
+      .container { flex-direction: column; align-items: center; }
+    }
+    /* WhatsApp fixed button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      z-index: 100;
+    }
+    .whatsapp-float img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
@@ -41,7 +77,7 @@
   </div>
   <div class="product-details">
     <h1 id="product-name">Chargement...</h1>
-    <div class="price">
+    <div class="price-container">
       <span class="old-price" id="product-old-price"></span>
       <span class="new-price" id="product-new-price"></span>
     </div>
@@ -50,8 +86,7 @@
       <input type="number" id="qty" value="1" min="1" />
       <button onclick="updateQty(1)">+</button>
     </div>
-    <a href="https://api.whatsapp.com/send/?phone=212723070966&text=Salam!%20Bghit%20nsewl%203la%20wa7d%20lparfum." 
-       class="btn" target="_blank">
+    <a id="whatsapp-link" href="#" class="btn" target="_blank" rel="noopener noreferrer">
       Ajouter au Panier
     </a>
     <details>
@@ -67,80 +102,138 @@
 
 <script>
   const products = {
-    '9pmafnan': {
+    // MEN fragrances: folder in 'img'
+    '9PM Afnan': {
       name: '9PM Afnan',
       folder: '9pmafnan',
-      oldPrice: '550 MAD',
-      newPrice: '470 MAD'
+      oldPrice: '550',
+      newPrice: '470',
+      type: 'men'
     },
-    '9pmrebel': {
+    '9PM Rebel': {
       name: '9PM Rebel',
       folder: 'ninepmrebel',
       oldPrice: '',
-      newPrice: '550 MAD'
+      newPrice: '550',
+      type: 'men'
     },
-    'lebeauedp': {
+    'Le Beau EDP': {
       name: 'Le Beau EDP',
       folder: 'lebeauedp',
-      oldPrice: '1300 MAD',
-      newPrice: '1150 MAD'
+      oldPrice: '1300',
+      newPrice: '1150',
+      type: 'men'
     },
-    'lebeauedt': {
+    'Le Beau EDT': {
       name: 'Le Beau EDT',
       folder: 'lebeauedt',
-      oldPrice: '950 MAD',
-      newPrice: '850 MAD'
+      oldPrice: '950',
+      newPrice: '850',
+      type: 'men'
     },
-    'paradise': {
+    'Le Beau Paradise Garden 125ML': {
       name: 'Le Beau Paradise Garden 125ML',
       folder: 'paradise',
-      oldPrice: '1200 MAD',
-      newPrice: '990 MAD'
+      oldPrice: '1200',
+      newPrice: '990',
+      type: 'men'
     },
-    'elexir': {
+    'Le Male Elixir': {
       name: 'Le Male Elixir',
       folder: 'elexir',
-      oldPrice: '1600 MAD',
-      newPrice: '1500 MAD'
+      oldPrice: '1600',
+      newPrice: '1500',
+      type: 'men'
     },
-    'naxos': {
+    'Xerjoff Naxos': {
       name: 'Xerjoff Naxos',
       folder: 'naxos',
-      oldPrice: '2300 MAD',
-      newPrice: '2200 MAD'
+      oldPrice: '2300',
+      newPrice: '2200',
+      type: 'men'
     },
-    'stronger': {
+    'Stronger With You': {
       name: 'Stronger With You',
       folder: 'stronger',
-      oldPrice: '1000 MAD',
-      newPrice: '1000 MAD'
+      oldPrice: '1000',
+      newPrice: '1000',
+      type: 'men'
     },
-    'ultamale': {
+    'Ultra Male': {
       name: 'Ultra Male',
       folder: 'ultamale',
-      oldPrice: '850 MAD',
-      newPrice: '850 MAD'
+      oldPrice: '850',
+      newPrice: '850',
+      type: 'men'
     },
-    'valentino': {
+    'Uomo Valentino': {
       name: 'Uomo Valentino',
       folder: 'valentino',
-      oldPrice: '1100 MAD',
-      newPrice: '1000 MAD'
+      oldPrice: '1100',
+      newPrice: '1000',
+      type: 'men'
     },
-    'versaccceeros': {
+    'Versace Eros': {
       name: 'Versace Eros',
       folder: 'versaccceeros',
-      oldPrice: '720 MAD',
-      newPrice: '720 MAD'
+      oldPrice: '720',
+      newPrice: '720',
+      type: 'men'
     },
-    'erbapurra': {
+    'Xerjoff Erba Pura': {
       name: 'Xerjoff Erba Pura',
       folder: 'erbapurra',
-      oldPrice: '2600 MAD',
-      newPrice: '2450 MAD'
+      oldPrice: '2600',
+      newPrice: '2450',
+      type: 'men'
     },
-  }
 
+    // WOMEN fragrances: folder in 'imgg'
+    'Divine Eau de Parfum': {
+      name: 'Divine Eau de Parfum',
+      folder: 'divine',
+      oldPrice: '900',
+      newPrice: '850',
+      type: 'women'
+    },
+    'Dolce GBN Light Blue': {
+      name: 'Dolce GBN Light Blue',
+      folder: 'dolcegbnlightblue',
+      oldPrice: '',
+      newPrice: '890',
+      type: 'women'
+    },
+    'Gabrielle Chanel Essence': {
+      name: 'Gabrielle Chanel Essence',
+      folder: 'gabriellechanelessence',
+      oldPrice: '',
+      newPrice: '1200',
+      type: 'women'
+    },
+    'JPG La Belle Eau de Parfum': {
+      name: 'JPG La Belle Eau de Parfum',
+      folder: 'jpgbelle',
+      oldPrice: '1200',
+      newPrice: '1100',
+      type: 'women'
+    },
+    'Scandal Gold EDP': {
+      name: 'Scandal Gold EDP',
+      folder: 'scandal gold edp',
+      oldPrice: '1000',
+      newPrice: '850',
+      type: 'women'
+    },
+    'The One For Woman': {
+      name: 'The One For Woman',
+      folder: 'theone',
+      oldPrice: '900',
+      newPrice: '800',
+      type: 'women'
+    }
+  };
+
+  // Update quantity field (+/-)
   function updateQty(val) {
     const qty = document.getElementById('qty');
     let n = parseInt(qty.value) || 1;
@@ -148,44 +241,82 @@
     qty.value = n;
   }
 
+  // Change main product image on thumbnail click
   function changeMainImage(src) {
     document.getElementById('product-image').src = src;
   }
 
-  function loadProduct(prod) {
+  // Load product info based on URL param 'name'
+  function loadProductByName(name) {
+    const prod = products[name];
     if (!prod) {
       document.querySelector('.container').innerHTML = "<p style='font-size:1.2rem;'>🚫 Produit introuvable.</p>";
       return;
     }
     document.getElementById('product-name').textContent = prod.name;
-    document.getElementById('product-old-price').textContent = prod.oldPrice;
-    document.getElementById('product-new-price').textContent = prod.newPrice;
 
-    const folder = `img/${prod.folder}/`;
-    document.getElementById('product-image').src = `${folder}1.jpg`;
+    // Show/hide old price
+    const oldPriceElem = document.getElementById('product-old-price');
+    if (prod.oldPrice && prod.oldPrice !== prod.newPrice && prod.oldPrice.trim() !== '') {
+      oldPriceElem.textContent = prod.oldPrice + " MAD";
+      oldPriceElem.style.display = 'block';
+    } else {
+      oldPriceElem.style.display = 'none';
+    }
 
+    // Show new price
+    document.getElementById('product-new-price').textContent = prod.newPrice + " MAD";
+
+    // Folder path depends on type (men = img/, women = imgg/)
+    const baseFolder = prod.type === 'women' ? 'imgg' : 'img';
+    const folderPath = `${baseFolder}/${prod.folder}/`;
+
+    // Set main image
+    document.getElementById('product-image').src = `${folderPath}1.jpg`;
+
+    // Load thumbnails (up to 3 images)
     const thumbs = document.getElementById('thumbnails');
     thumbs.innerHTML = '';
     for (let i = 1; i <= 3; i++) {
+      // Assuming images are named 1.jpg, 2.jpg, 3.jpg
+      const thumbSrc = `${folderPath}${i}.jpg`;
       const img = document.createElement('img');
-      img.src = `${folder}${i}.jpg`;
-      img.onclick = () => changeMainImage(img.src);
+      img.src = thumbSrc;
+      img.alt = `${prod.name} image ${i}`;
+      img.onclick = () => changeMainImage(thumbSrc);
       thumbs.appendChild(img);
     }
+
+    // Update WhatsApp order link with product name and quantity
+    function updateWhatsAppLink() {
+      const qty = document.getElementById('qty').value;
+      const phone = '212723070966'; // Your phone number here
+      const text = encodeURIComponent(`Salam! Bghit nsewl 3la wa7d lparfum: ${prod.name} (Qty: ${qty}).`);
+      const url = `https://api.whatsapp.com/send/?phone=${phone}&text=${text}`;
+      document.getElementById('whatsapp-link').href = url;
+    }
+
+    updateWhatsAppLink();
+
+    // Update WhatsApp link on quantity change
+    document.getElementById('qty').addEventListener('input', updateWhatsAppLink);
+    document.getElementById('qty').addEventListener('change', updateWhatsAppLink);
   }
 
-  const nameParam = new URLSearchParams(location.search).get('name');
-  const prod = Object.values(products).find(p => p.name === nameParam);
-  loadProduct(prod);
+  // Get 'name' param from URL and load product
+  const urlParams = new URLSearchParams(window.location.search);
+  const prodName = urlParams.get('name');
+
+  if (prodName && products[prodName]) {
+    loadProductByName(prodName);
+  } else {
+    document.querySelector('.container').innerHTML = "<p style='font-size:1.2rem;'>🚫 Produit introuvable.</p>";
+  }
 </script>
 
-<!-- زر واتساب ثابت -->
-<a href="https://api.whatsapp.com/send/?phone=212723070966&text=Salam!%20Bghit%20nsewl%203la%20wa7d%20lparfum." 
-   class="whatsapp-float" 
-   target="_blank" 
-   aria-label="Contact via WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-       alt="WhatsApp" />
+<!-- WhatsApp fixed button -->
+<a href="https://api.whatsapp.com/send/?phone=212723070966" class="whatsapp-float" target="_blank" aria-label="Contact via WhatsApp" rel="noopener noreferrer">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
 
 </body>
