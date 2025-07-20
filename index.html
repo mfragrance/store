@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mosaab Fragrance</title>
@@ -34,6 +33,15 @@
     .logo:focus {
       transform: scale(1.05);
       outline: none;
+    }
+
+    /* Title for Parfum Homme */
+    .parfum-homme-title {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      color: #222;
+      margin-top: 40px;
     }
 
     main.products {
@@ -114,6 +122,36 @@
       width: 32px;
       height: 32px;
     }
+
+    /* Responsive design for mobile */
+    @media (max-width: 768px) {
+      main.products {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 10px;
+      }
+
+      article.product {
+        width: 90%;
+        max-width: 320px;
+      }
+
+      .rectangle {
+        height: 120px;
+      }
+
+      .logo {
+        max-width: 150px;
+      }
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .price {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -122,8 +160,13 @@
     <img src="logo.png" alt="Mosaab Fragrance Logo" class="logo" tabindex="0" />
   </header>
 
-  <main class="products" aria-label="Liste des parfums">
+  <!-- Parfum Homme Title -->
+  <div class="parfum-homme-title">
+    <h2>Parfum Homme</h2>
+  </div>
 
+  <main class="products" aria-label="Liste des parfums">
+    <!-- Parfum Homme Products -->
     <article class="product">
       <a href="product.html?name=9PM Afnan">
         <img src="img/9pmafnan/1.jpg" alt="9PM Afnan" />
@@ -217,20 +260,79 @@
         <img src="img/erbapurra/1.jpg" alt="Xerjoff Erba Pura" />
         <h3>Xerjoff Erba Pura</h3>
         <p class="price">2 600,00 MAD</p>
+      
       </a>
+
     </article>
-
   </main>
+<!-- Parfum Homme Title -->
+  <!-- Parfum Femme Title -->
+<div class="parfum-homme-title">
+  <h2>Parfum Femme</h2>
+</div>
 
-  <!-- زر واتساب ثابت -->
-<a href="https://api.whatsapp.com/send/?phone=212723070966&text=Salam!%20Bghit%20nsewl%203la%20wa7d%20lparfum." 
-   class="whatsapp-float" 
-   target="_blank" 
-   aria-label="Contact via WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-       alt="WhatsApp" />
-</a>
+<main class="products" aria-label="Liste des parfums femme">
+  <article class="product">
+    <a href="product.html?name=Divine">
+      <img src="imgg/divine/1.jpg" alt="Divine" />
+      <h3>Divine</h3>
+      <p class="price">750,00 MAD</p>
+    </a>
+  </article>
 
+  <article class="product">
+    <a href="product.html?name=Dolce GBN Light Blue">
+      <img src="imgg/dolcegbnlightblue/1.jpg" alt="Dolce GBN Light Blue" />
+      <h3>Dolce GBN Light Blue</h3>
+      <p class="price">800,00 MAD</p>
+    </a>
+  </article>
+
+  <article class="product">
+    <a href="product.html?name=Gabrielle Chanel Essence">
+      <img src="imgg/gabriellechanelessence/1.jpg" alt="Gabrielle Chanel Essence" />
+      <h3>Gabrielle Chanel Essence</h3>
+      <p class="price">1 200,00 MAD</p>
+    </a>
+  </article>
+
+  <article class="product">
+    <a href="product.html?name=JPG Belle">
+      <img src="imgg/jpgbelle/1.jpg" alt="JPG Belle" />
+      <h3>JPG Belle</h3>
+      <p class="price">950,00 MAD</p>
+    </a>
+  </article>
+
+  <article class="product">
+    <a href="product.html?name=Scandal Gold EDP">
+      <img src="imgg/scandal gold edp/1.jpg" alt="Scandal Gold EDP" />
+      <h3>Scandal Gold EDP</h3>
+      <p class="price">1 100,00 MAD</p>
+    </a>
+  </article>
+
+  <article class="product">
+    <a href="product.html?name=The One">
+      <img src="imgg/theone/1.jpg" alt="The One" />
+      <h3>The One</h3>
+      <p class="price">1 050,00 MAD</p>
+    </a>
+  </article>
+</main>
+
+ 
+
+
+
+  
+  <!-- WhatsApp Button -->
+  <a href="https://api.whatsapp.com/send/?phone=212723070966&text=Salam!%20Bghit%20nsewl%203la%20wa7d%20lparfum." 
+     class="whatsapp-float" 
+     target="_blank" 
+     aria-label="Contact via WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
 
 </body>
 </html>
