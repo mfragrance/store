@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Votre Panier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #fefefe;
+      color: #222;
+    }
+    h1 {
+      color: #e63946;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .cart-container {
+      max-width: 1000px;
+      margin: auto;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    }
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .cart-info {
+      flex-grow: 1;
+      margin-left: 20px;
+    }
+    .cart-info h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+    .cart-info p {
+      margin: 0;
+      font-weight: bold;
+      color: #e63946;
+    }
+    .cart-qty {
+      margin-right: 20px;
+      font-weight: bold;
+    }
+    .total {
+      text-align: right;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #e63946;
+    }
+    .empty {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 1.1rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #e63946;
+      color: #fff;
+      padding: 10px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #b02631;
+    }
+    form {
+      margin-top: 30px;
+      max-width: 500px;
+      margin-inline: auto;
+    }
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Votre Panier</h1>
+  <div class="cart-container" id="cart-container"></div>
+  <div class="total" id="total"></div>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="btn">← Continuer vos achats</a>
+    <button class="btn" onclick="showForm()">Commander</button>
+  </div>
+
+  <form id="order-form" style="display:none">
+    <input type="text" id="name" placeholder="Votre nom complet" required />
+    <input type="tel" id="phone" placeholder="Votre numéro de téléphone" required />
+    <input type="text" id="address" placeholder="Votre adresse complète" required />
+    <button type="submit" class="btn">Envoyer la commande</button>
+  </form>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const container = document.getElementById('cart-container');
+    const totalBox = document.getElementById('total');
+
+    if (cart.length === 0) {
+      container.innerHTML = "<p class='empty'>🛒 Votre panier est vide.</p>";
+    } else {
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div class="cart-info">
+            <h3>${item.name}</h3>
+            <p>${item.price} MAD</p>
+          </div>
+          <div class="cart-qty">x${item.qty}</div>
+          <button class="btn" style="background:#999;" onclick="removeItem('${item.name}')">Supprimer</button>
+        `;
+        container.appendChild(div);
+      });
+
+      totalBox.textContent = `Total : ${total.toFixed(2)} MAD`;
+    }
+
+    function showForm() {
+      document.getElementById("order-form").style.display = "block";
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
+
+    document.getElementById("order-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const phoneRegex = /^(06|07)[0-9]{8}$/;
+
+      if (name === "" || address === "" || !phoneRegex.test(phone)) {
+        alert("❌ Vérifiez vos informations. Numéro invalide ou champ vide.");
+        return;
+      }
+
+      const orderData = {
+        name,
+        phone,
+        address,
+        cart
+      };
+
+      localStorage.setItem("order", JSON.stringify(orderData));
+      window.location.href = "commande.html";
+    });
+
+    function removeItem(name) {
+      const updatedCart = cart.filter(p => p.name !== name);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>
