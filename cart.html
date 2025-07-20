@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: 'Montserrat', sans-serif; padding: 20px; background: #fff; }
+    h1 { text-align: center; }
+    .cart-item { border-bottom: 1px solid #ccc; padding: 10px 0; }
+    .total { font-weight: bold; font-size: 1.2rem; margin-top: 20px; }
+    form { margin-top: 30px; background: #f5f5f5; padding: 20px; border-radius: 10px; }
+    input, select, textarea {
+      width: 100%; padding: 10px; margin: 10px 0; border-radius: 6px; border: 1px solid #ccc;
+    }
+    button {
+      background: #e63946; color: white; padding: 12px 20px;
+      border: none; border-radius: 6px; cursor: pointer; width: 100%;
+    }
+    button:hover { background: #c62d3c; }
+  </style>
+</head>
+<body>
+
+<h1>🛒 Votre Panier</h1>
+<div id="cart-container"></div>
+<div class="total" id="total-price"></div>
+
+<h2>Informations de Livraison</h2>
+<form id="checkout-form">
+  <input type="text" id="name" placeholder="Nom Complet" required />
+  <input type="tel" id="phone" placeholder="Téléphone" required />
+  <input type="text" id="address" placeholder="Adresse complète" required />
+  <input type="text" id="city" placeholder="Ville" required />
+  <textarea id="notes" placeholder="Note (facultatif)"></textarea>
+  <button type="submit">🧾 Confirmer la commande</button>
+</form>
+
+<script>
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartContainer = document.getElementById("cart-container");
+  const totalPriceElem = document.getElementById("total-price");
+
+  let total = 0;
+  cart.forEach(item => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `<strong>${item.name}</strong><br>Quantité: ${item.qty}<br>Prix unitaire: ${item.price} MAD<br>Sous-total: ${subtotal} MAD`;
+    cartContainer.appendChild(div);
+  });
+
+  const livraison = 40;
+  totalPriceElem.textContent = `🧾 Total: ${total + livraison} MAD (inclut livraison: 40 MAD)`;
+
+  // Handle checkout form
+  document.getElementById("checkout-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+
+    if (!name || !phone || !address || !city) {
+      alert("Merci de remplir tous les champs obligatoires.");
+      return;
+    }
+
+    const order = {
+      name,
+      phone,
+      address,
+      city,
+      notes,
+      cart,
+      total: total + livraison
+    };
+
+    console.log("Commande:", order);
+    alert("✅ Commande confirmée ! Nous vous contacterons bientôt.");
+    localStorage.removeItem("cart");
+    window.location.href = "index.html";
+  });
+</script>
+
+</body>
+</html>
