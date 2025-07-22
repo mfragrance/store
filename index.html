@@ -3,370 +3,296 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mosaab Fragrance - Tous les parfums</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <title>Mosaab Fragrance - Accueil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset */
-    *, *::before, *::after {
-      box-sizing: border-box;
+    :root {
+      --primary: #ff6b6b;
+      --secondary: #23242a;
+      --card-bg: rgba(40, 44, 52, 0.92);
+      --glass-blur: 12px;
+      --shadow: 0 8px 32px 0 rgba(0,0,0,0.35);
+      --radius: 20px;
+      --transition: 0.5s cubic-bezier(.4,2,.6,1);
+      --text-main: #f7f7fa;
+      --text-secondary: #bdbdbd;
+      --header-bg: rgba(30, 32, 38, 0.95);
+      --input-bg: rgba(50, 52, 60, 0.95);
+      --input-border: #444;
+      --input-focus: #ff6b6b;
+      --card-border: rgba(255,255,255,0.07);
+      --cart-bg: #ff6b6b;
+      --cart-hover: #c0392b;
+      --icon-bg: rgba(30,32,38,0.85);
+      --icon-hover: #ff6b6b;
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #fefefe;
-      color: #222;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    /* Header */
-    header {
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #18181c 0%, #23242a 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      letter-spacing: 0.01em;
+      overflow-x: hidden;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    header .logo {
-      height: 110px;
-      width: auto;
-      margin: 0 auto;
-    }
-    /* Container for icons */
-    .header-icons {
-      position: absolute;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    /* Search icon */
-    .search-icon, .panier-icon {
-      width: 28px;
-      height: 28px;
-      stroke: #333;
-      stroke-width: 2;
-      fill: none;
-      cursor: pointer;
-      transition: stroke 0.3s;
-    }
-    .search-icon:hover, .panier-icon:hover {
-      stroke: #e63946;
-    }
-    /* Search input bar */
-    .search-bar {
-      position: absolute;
-      right: 60px;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      border: 1.5px solid #e63946;
-      border-radius: 20px;
-      padding: 6px 15px;
-      font-size: 1rem;
-      width: 200px;
-      color: #222;
-      outline: none;
-      background: #fff;
-      box-shadow: 0 0 6px rgba(230, 57, 70, 0.4);
-      z-index: 110;
-    }
-    .search-bar.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    /* Main content styling */
-    main {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 15px;
-    }
-    h2.section-title {
-      margin-bottom: 20px;
-      border-bottom: 2px solid #e63946;
-      padding-bottom: 8px;
-      color: #e63946;
-      font-weight: 700;
-    }
-    /* Products grid */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-      gap: 20px;
-    }
-    article.product {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 3px 12px rgb(0 0 0 / 0.1);
-      overflow: hidden;
-      transition: transform 0.2s;
-      cursor: pointer;
+
+    .centered-logo-section {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 15px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      animation: fadeInDown 1s;
     }
-    article.product:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgb(230 57 70 / 0.3);
-    }
-    article.product img {
-      max-width: 100%;
-      height: 180px;
-      object-fit: contain;
+    .centered-logo-section img {
+      width: 120px;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(255,255,255,0.08);
       margin-bottom: 12px;
-      border-radius: 8px;
     }
-    article.product h3 {
-      margin: 0 0 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #222;
-    }
-    p.price {
+    .centered-logo-section h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: #e63946;
+      color: var(--text-main);
+      letter-spacing: 0.04em;
+      background: linear-gradient(90deg, var(--primary) 10%, #fff 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .gallery-section {
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      padding: 0 16px;
+      width: 100%;
+    }
+    .gallery-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin: 24px 0 18px 0;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.02em;
+      text-align: left;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      width: 100%;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 18px 14px 18px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1.5px solid var(--card-border);
+      position: relative;
+      min-height: 370px;
+    }
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px 0 rgba(255,107,107,0.18);
+      border-color: var(--primary);
+    }
+    .product-image-wrapper {
+      width: 160px;
+      height: 200px;
+      background: #23242a;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: filter 0.3s;
+      background: #23242a;
+      display: block;
+    }
+    .product-card:hover .product-image {
+      filter: brightness(1.08) saturate(1.1);
+    }
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      text-align: center;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-prices {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .old-price {
+      text-decoration: line-through;
+      margin-right: 8px;
+      color: #888;
+      font-weight: 400;
+    }
+    .new-price {
+      font-weight: bold;
+      color: var(--text-main);
       font-size: 1.1rem;
-      margin: 0;
+    }
+    .product-type {
+      font-size: 0.98em;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .product-link {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 22px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(255,107,107,0.13);
+      letter-spacing: 0.01em;
+    }
+    .product-link:hover {
+      background: var(--cart-hover);
+      transform: scale(1.04);
+    }
+    footer {
+      width: 100%;
+      background: rgba(30,32,38,0.95);
+      color: var(--text-secondary);
+      text-align: center;
+      padding: 18px 0 12px 0;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      margin-top: auto;
+      border-top: 1px solid var(--card-border);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+    }
+    @media (max-width: 900px) {
+      .centered-logo-section img { width: 80px; }
+      .centered-logo-section h1 { font-size: 1.5rem; }
+      .gallery-title { font-size: 1.3rem; }
+      .gallery-grid { gap: 18px; }
+      .product-card { min-height: 320px; }
+      .product-image-wrapper { width: 110px; height: 140px; }
     }
     @media (max-width: 600px) {
-      main {
-        margin: 20px 10px;
-      }
-      article.product img {
-        height: 140px;
-      }
-      .search-bar {
-        width: 140px;
-        right: 50px;
-        font-size: 0.9rem;
-      }
+      .centered-logo-section { margin-top: 16px; }
+      .gallery-section { padding: 0 2px; }
+      .gallery-title { font-size: 1.1rem; }
+      .product-image-wrapper { width: 90px; height: 110px; }
+      .product-card { min-height: 220px; padding: 10px 4px; }
     }
   </style>
 </head>
 <body>
-
-<header>
-  <img src="logo.png" alt="Mosaab Fragrance" class="logo" />
-  <div class="header-icons">
-    <a href="panier.html" title="Panier">
-      <!-- Panier (cart) SVG icon -->
-      <svg class="panier-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-label="Panier">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6H19m-12 0a1 1 0 11-2 0 1 1 0 012 0zm12 0a1 1 0 11-2 0 1 1 0 012 0z" />
-      </svg>
+  <div class="centered-logo-section">
+    <a href="index.html">
+      <img src="logo.png" alt="Luxury Perfumes Logo" />
     </a>
-    <div class="search-container" title="Rechercher">
-      <!-- Search SVG icon -->
-      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="Rechercher">
-        <circle cx="11" cy="11" r="7" />
-        <line x1="16.65" y1="16.65" x2="21" y2="21" />
-      </svg>
-      <input type="search" placeholder="Recherche..." class="search-bar" aria-label="Barre de recherche" />
-    
-    </div>
+    <h1>Mosaab fragrance</h1>
   </div>
-</header>
-
-<main>
-
-    <!-- Parfum Homme Title -->
-  <div class="parfum-homme-title">
-    <h2>Parfum Homme</h2>
+  <div class="gallery-section">
+    <div class="gallery-title">Parfums Homme</div>
+    <div class="gallery-grid" id="gallery-men"></div>
+    <div class="gallery-title" style="margin-top:36px;">Parfums Femme</div>
+    <div class="gallery-grid" id="gallery-women"></div>
   </div>
-
-  <main class="products" aria-label="Liste des parfums">
-    <!-- Parfum Homme Products -->
-    <article class="product">
-      <a href="product.html?name=9PM Afnan">
-        <img src="img/9pmafnan/1.jpg" alt="9PM Afnan" />
-        <h3>9PM Afnan</h3>
-        <p class="price">470,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=9PM Rebel">
-        <img src="img/ninepmrebel/1.jpg" alt="9PM Rebel" />
-        <h3>9PM Rebel</h3>
-        <p class="price">550,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Le Beau EDP">
-        <img src="img/lebeauedp/1.jpg" alt="Le Beau EDP" />
-        <h3>Le Beau EDP</h3>
-        <p class="price">1 150,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Le Beau EDT">
-        <img src="img/lebeauedt/1.jpg" alt="Le Beau EDT" />
-        <h3>Le Beau EDT</h3>
-        <p class="price">850,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Le Beau Paradise Garden 125ML">
-        <img src="img/paradise/1.jpg" alt="Le Beau Paradise Garden 125ML" />
-        <h3>Le Beau Paradise Garden 125ML</h3>
-        <p class="price">990,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Le Male Elixir">
-        <img src="img/elexir/1.jpg" alt="Le Male Elixir" />
-        <h3>Le Male Elixir</h3>
-        <p class="price">1 500,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Xerjoff Naxos">
-        <img src="img/naxos/1.jpg" alt="Xerjoff Naxos" />
-        <h3>Xerjoff Naxos</h3>
-        <p class="price">2 200,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Stronger With You">
-        <img src="img/stronger/1.jpg" alt="Stronger With You" />
-        <h3>Stronger With You</h3>
-        <p class="price">1 000,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Ultra Male">
-        <img src="img/ultamale/1.jpg" alt="Ultra Male" />
-        <h3>Ultra Male</h3>
-        <p class="price">850,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Uomo Valentino">
-        <img src="img/valentino/1.jpg" alt="Uomo Valentino" />
-        <h3>Uomo Valentino</h3>
-        <p class="price">1 000,00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Versace Eros">
-        <img src="img/versaccceeros/1.jpg" alt="Versace Eros" />
-        <h3>Versace Eros</h3>
-        <p class="price">1100.00 MAD</p>
-      </a>
-    </article>
-
-    <article class="product">
-      <a href="product.html?name=Xerjoff Erba Pura">
-        <img src="img/erbapurra/1.jpg" alt="Xerjoff Erba Pura" />
-        <h3>Xerjoff Erba Pura</h3>
-        <p class="price">2 600,00 MAD</p>
-      
-      </a>
-
-    </article>
-  </main>
-<!-- Parfum Homme Title -->
-  <!-- Parfum Femme Title -->
-<div class="parfum-homme-title">
-  <h2>Parfum Femme</h2>
-</div>
-
-<main class="products" aria-label="Liste des parfums femme">
-  <article class="product">
-    <a href="product.html?name=Divine">
-      <img src="imgg/divine/1.jpg" alt="Divine" />
-      <h3>Divine</h3>
-      <p class="price">750,00 MAD</p>
-    </a>
-  </article>
-
-  <article class="product">
-    <a href="product.html?name=Dolce GBN Light Blue">
-      <img src="imgg/dolcegbnlightblue/1.jpg" alt="Dolce GBN Light Blue" />
-      <h3>Dolce GBN Light Blue</h3>
-      <p class="price">800,00 MAD</p>
-    </a>
-  </article>
-
-  <article class="product">
-    <a href="product.html?name=Gabrielle Chanel Essence">
-      <img src="imgg/gabriellechanelessence/1.jpg" alt="Gabrielle Chanel Essence" />
-      <h3>Gabrielle Chanel Essence</h3>
-      <p class="price">1 200,00 MAD</p>
-    </a>
-  </article>
-
-  <article class="product">
-    <a href="product.html?name=JPG Belle">
-      <img src="imgg/jpgbelle/1.jpg" alt="JPG Belle" />
-      <h3>JPG Belle</h3>
-      <p class="price">950,00 MAD</p>
-    </a>
-  </article>
-
-  <article class="product">
-    <a href="product.html?name=Scandal Gold EDP">
-      <img src="imgg/scandalgoldedp/1.jpg" alt="Scandal Gold EDP" />
-      <h3>Scandal Gold EDP</h3>
-      <p class="price">1 100,00 MAD</p>
-    </a>
-  </article>
-
-  <article class="product">
-    <a href="product.html?name=The One">
-      <img src="imgg/theone/1.jpg" alt="The One" />
-      <h3>The One</h3>
-      <p class="price">1 050,00 MAD</p>
-    </a>
-  </article>
-</main>
-
-<script>
-  const searchIcon = document.querySelector('.search-icon');
-  const searchBar = document.querySelector('.search-bar');
-
-  searchIcon.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (searchBar.classList.contains('visible')) {
-      searchBar.classList.remove('visible');
-      searchBar.value = '';
-      searchBar.blur();
-    } else {
-      searchBar.classList.add('visible');
-      searchBar.focus();
+  <footer>© 2025</footer>
+  <script>
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
-  });
+    const products = [
+      // MEN
+      { name: '9PM Afnan', folder: '9pmafnan', oldPrice: '550 MAD', newPrice: '470 MAD', type: 'men', description: 'A bold, long-lasting fragrance with notes of apple, cinnamon, and vanilla. Perfect for evening wear.' },
+      { name: 'Le Male Elixir', folder: 'elexir', oldPrice: '1600 MAD', newPrice: '1500 MAD', type: 'men', description: 'A modern twist on a classic scent, blending lavender, mint, and warm woods for a seductive aura.' },
+      { name: 'Erba Pura', folder: 'erbapurra', oldPrice: '1200 MAD', newPrice: '1100 MAD', type: 'men', description: '' },
+      { name: 'Le Beau EDP', folder: 'lebeauedp', oldPrice: '1300 MAD', newPrice: '1200 MAD', type: 'men', description: '' },
+      { name: 'Le Beau EDT', folder: 'lebeauedt', oldPrice: '1100 MAD', newPrice: '1000 MAD', type: 'men', description: '' },
+      { name: 'Naxos', folder: 'naxos', oldPrice: '1400 MAD', newPrice: '1300 MAD', type: 'men', description: '' },
+      { name: '9PM Rebel', folder: 'ninepmrebel', oldPrice: '600 MAD', newPrice: '520 MAD', type: 'men', description: '' },
+      { name: 'Paradise', folder: 'paradise', oldPrice: '700 MAD', newPrice: '630 MAD', type: 'men', description: '' },
+      { name: 'Stronger', folder: 'stronger', oldPrice: '800 MAD', newPrice: '720 MAD', type: 'men', description: '' },
+      { name: 'Ultra Male', folder: 'ultamale', oldPrice: '900 MAD', newPrice: '820 MAD', type: 'men', description: '' },
+      { name: 'Valentino', folder: 'valentino', oldPrice: '1000 MAD', newPrice: '900 MAD', type: 'men', description: '' },
+      { name: 'Versace Eros', folder: 'versaccceeros', oldPrice: '1100 MAD', newPrice: '1000 MAD', type: 'men', description: '' },
+      // WOMEN
+      { name: 'Divine', folder: 'divine', oldPrice: '1200 MAD', newPrice: '1100 MAD', type: 'women', description: '' },
+      { name: 'Dolce Gabbana Light Blue', folder: 'dolcegbnlightblue', oldPrice: '1300 MAD', newPrice: '1200 MAD', type: 'women', description: '' },
+      { name: 'Gabrielle Chanel Essence', folder: 'gabriellechanelessence', oldPrice: '1400 MAD', newPrice: '1300 MAD', type: 'women', description: '' },
+      { name: 'JPG Belle', folder: 'jpgbelle', oldPrice: '1500 MAD', newPrice: '1400 MAD', type: 'women', description: '' },
+      { name: 'Scandal Gold EDP', folder: 'scandalgoldedp', oldPrice: '1600 MAD', newPrice: '1500 MAD', type: 'women', description: '' },
+      { name: 'The One', folder: 'theone', oldPrice: '1700 MAD', newPrice: '1600 MAD', type: 'women', description: '' }
+    ];
 
-  document.addEventListener('click', () => {
-    searchBar.classList.remove('visible');
-    searchBar.value = '';
-    searchBar.blur();
-  });
+    function getImagePath(product) {
+      // Always use 1.jpg for gallery
+      const folder = product.type === 'men' ? 'img' : 'imgg';
+      return `${folder}/${escapeHTML(product.folder)}/1.jpg`;
+    }
 
-  // منع إغلاق البحث عند الضغط داخله
-  searchBar.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-</script>
+    function renderGallery(products, type, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = products
+        .filter(p => p.type === type)
+        .map(p => `
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <a href="product.html?folder=${encodeURIComponent(p.folder)}">
+                <img src="${getImagePath(p)}" alt="${escapeHTML(p.name)}" class="product-image" loading="lazy"
+                  onerror="this.onerror=null;this.src='https://via.placeholder.com/160x200?text=No+Image';" />
+              </a>
+            </div>
+            <div class="product-title">${escapeHTML(p.name)}</div>
+            <div class="product-type">${p.type === 'men' ? 'Homme' : 'Femme'}</div>
+            <div class="product-prices">
+              ${p.oldPrice ? `<span class="old-price">${escapeHTML(p.oldPrice)}</span>` : ''}
+              <span class="new-price">${escapeHTML(p.newPrice)}</span>
+            </div>
+            <a class="product-link" href="product.html?folder=${encodeURIComponent(p.folder)}">Voir le parfum</a>
+          </div>
+        `).join('');
+    }
 
+    renderGallery(products, 'men', 'gallery-men');
+    renderGallery(products, 'women', 'gallery-women');
+  </script>
 </body>
 </html>
