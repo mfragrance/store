@@ -1,248 +1,187 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mosaab Fragrance - Accueil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mosaab Fragrance — Accueil (Gold · Black)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #ff6b6b;
-      --secondary: #23242a;
-      --card-bg: rgba(40, 44, 52, 0.92);
-      --glass-blur: 12px;
-      --shadow: 0 8px 32px 0 rgba(0,0,0,0.35);
-      --radius: 20px;
-      --transition: 0.5s cubic-bezier(.4,2,.6,1);
-      --text-main: #f7f7fa;
-      --text-secondary: #bdbdbd;
-      --header-bg: rgba(30, 32, 38, 0.95);
-      --input-bg: rgba(50, 52, 60, 0.95);
-      --input-border: #444;
-      --input-focus: #ff6b6b;
-      --card-border: rgba(255,255,255,0.07);
-      --cart-bg: #ff6b6b;
-      --cart-hover: #c0392b;
-      --icon-bg: rgba(30,32,38,0.85);
-      --icon-hover: #ff6b6b;
+    :root{
+      --bg:#070607;
+      --panel:rgba(15,15,15,0.6);
+      --glass:rgba(255,255,255,0.03);
+      --gold:#d4af37;
+      --muted:#9a938b;
+      --card:#0f0f10;
+      --accent:linear-gradient(90deg,var(--gold),#ffd87a);
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,0.6);
+      --trans:300ms cubic-bezier(.2,.9,.3,1);
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(120deg, #18181c 0%, #23242a 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      letter-spacing: 0.01em;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(212,175,55,0.03), transparent 6%),
+        radial-gradient(600px 300px at 90% 90%, rgba(212,175,55,0.02), transparent 6%),
+        var(--bg);
+      color:#f4f2ee;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      letter-spacing:0.01em;
     }
 
-    .centered-logo-section {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 32px;
-      margin-bottom: 16px;
-      animation: fadeInDown 1s;
+    /* Header */
+    header{
+      max-width:1200px;
+      margin:24px auto;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:12px 16px;
     }
-    .centered-logo-section img {
-      width: 120px;
-      height: auto;
-      border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(255,255,255,0.08);
-      margin-bottom: 12px;
+    .logo {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
     }
-    .centered-logo-section h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--text-main);
-      letter-spacing: 0.04em;
-      background: linear-gradient(90deg, var(--primary) 10%, #fff 90%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0;
-      text-align: center;
+    .logo img{width:64px;height:64px;border-radius:12px;object-fit:cover;box-shadow:0 6px 20px rgba(212,175,55,0.06)}
+    .brand {
+      font-family:'Playfair Display',serif;
+      font-size:1.6rem;
+      background:var(--accent);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px);}
-      to { opacity: 1; transform: translateY(0);}
+    .spacer{flex:1}
+
+    /* search + controls */
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .search {
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.04);
+      padding:10px 14px;
+      border-radius:12px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      min-width:260px;
+      transition:box-shadow var(--trans);
+    }
+    .search:focus-within{box-shadow:0 6px 30px rgba(212,175,55,0.06)}
+    .search input{
+      background:transparent;border:0;color:inherit;outline:none;font-size:0.95rem;width:180px;
+    }
+    .theme-pill{
+      background:linear-gradient(180deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+      border:1px solid rgba(212,175,55,0.08);
+      padding:8px 12px;border-radius:12px;color:var(--gold);font-weight:600;font-size:0.95rem;
     }
 
-    .gallery-section {
-      max-width: 1200px;
-      margin: 0 auto 40px auto;
-      padding: 0 16px;
-      width: 100%;
+    /* hero */
+    .hero{
+      max-width:1200px;margin:8px auto 22px;padding:18px 16px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow);display:flex;gap:18px;align-items:center;
     }
-    .gallery-title {
-      font-size: 2rem;
-      color: var(--primary);
-      margin: 24px 0 18px 0;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 0.02em;
-      text-align: left;
+    .hero-left{flex:1;min-width:260px}
+    .hero-title{
+      font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:8px;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      width: 100%;
+    .hero-sub{color:var(--muted);margin-bottom:12px}
+    .cta{
+      display:inline-block;background:var(--gold);color:#0b0b0b;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;box-shadow:0 6px 26px rgba(212,175,55,0.12);transition:transform var(--trans);}
+    .cta:hover{transform:translateY(-4px)}
+
+    .hero-right{width:300px;display:flex;justify-content:center;align-items:center}
+    .hero-bottle{width:220px;height:220px;border-radius:18px;background:linear-gradient(180deg,#111,#0b0b0b);box-shadow:0 10px 40px rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03)}
+    .hero-bottle img{width:90%;height:90%;object-fit:cover;border-radius:12px}
+
+    /* gallery */
+    .section-title{max-width:1200px;margin:28px auto 12px;padding:0 16px;font-family:'Playfair Display',serif;color:var(--gold);font-size:1.4rem}
+    .grid{
+      max-width:1200px;margin:0 auto 48px;padding:0 16px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
     }
-    .product-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      padding: 18px 14px 18px 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.25s, box-shadow 0.25s;
-      border: 1.5px solid var(--card-border);
-      position: relative;
-      min-height: 370px;
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;padding:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 24px rgba(0,0,0,0.6);
+      transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans);
+      display:flex;flex-direction:column;align-items:center;text-align:center;
     }
-    .product-card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 8px 32px 0 rgba(255,107,107,0.18);
-      border-color: var(--primary);
-    }
-    .product-image-wrapper {
-      width: 160px;
-      height: 200px;
-      background: #23242a;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-    }
-    .product-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-      transition: filter 0.3s;
-      background: #23242a;
-      display: block;
-    }
-    .product-card:hover .product-image {
-      filter: brightness(1.08) saturate(1.1);
-    }
-    .product-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 6px;
-      text-align: center;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .product-prices {
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .old-price {
-      text-decoration: line-through;
-      margin-right: 8px;
-      color: #888;
-      font-weight: 400;
-    }
-    .new-price {
-      font-weight: bold;
-      color: var(--text-main);
-      font-size: 1.1rem;
-    }
-    .product-type {
-      font-size: 0.98em;
-      color: var(--text-secondary);
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .product-link {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 8px 22px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.05rem;
-      transition: background 0.3s, transform 0.2s;
-      box-shadow: 0 2px 8px rgba(255,107,107,0.13);
-      letter-spacing: 0.01em;
-    }
-    .product-link:hover {
-      background: var(--cart-hover);
-      transform: scale(1.04);
-    }
-    footer {
-      width: 100%;
-      background: rgba(30,32,38,0.95);
-      color: var(--text-secondary);
-      text-align: center;
-      padding: 18px 0 12px 0;
-      font-size: 1.1rem;
-      letter-spacing: 0.02em;
-      margin-top: auto;
-      border-top: 1px solid var(--card-border);
-      box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
-    }
-    @media (max-width: 900px) {
-      .centered-logo-section img { width: 80px; }
-      .centered-logo-section h1 { font-size: 1.5rem; }
-      .gallery-title { font-size: 1.3rem; }
-      .gallery-grid { gap: 18px; }
-      .product-card { min-height: 320px; }
-      .product-image-wrapper { width: 110px; height: 140px; }
-    }
-    @media (max-width: 600px) {
-      .centered-logo-section { margin-top: 16px; }
-      .gallery-section { padding: 0 2px; }
-      .gallery-title { font-size: 1.1rem; }
-      .product-image-wrapper { width: 90px; height: 110px; }
-      .product-card { min-height: 220px; padding: 10px 4px; }
-    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.7);border-color:rgba(212,175,55,0.12)}
+    .card .img-wrap{width:160px;height:200px;border-radius:12px;overflow:hidden;background:#0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 -20px 40px rgba(0,0,0,0.25)}
+    .card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 400ms}
+    .card:hover img{transform:scale(1.06)}
+    .card .name{font-family:'Playfair Display',serif;margin-top:12px;color:var(--gold);font-size:1.05rem}
+    .card .meta{color:var(--muted);font-size:0.95rem;margin-top:6px}
+    .prices{margin-top:10px}
+    .old{color:#8b8680;text-decoration:line-through;margin-right:8px}
+    .new{color:#fff;font-weight:700}
+    .viewbtn{margin-top:12px;display:inline-block;padding:10px 16px;border-radius:10px;background:transparent;border:1px solid rgba(212,175,55,0.14);color:var(--gold);text-decoration:none;font-weight:600;transition:background var(--trans),transform var(--trans)}
+    .viewbtn:hover{background:rgba(212,175,55,0.06);transform:translateY(-3px)}
+
+    /* responsive */
+    @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)} .hero-right{display:none}}
+    @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)} .search input{width:110px} .hero{flex-direction:column;gap:12px}}
+    @media(max-width:480px){.grid{grid-template-columns:repeat(1,1fr)} header{padding:8px 12px}}
+    /* footer */
+    footer{max-width:1200px;margin:0 auto 30px auto;padding:18px 16px;color:var(--muted);font-size:0.95rem;text-align:center}
   </style>
 </head>
 <body>
-  <div class="centered-logo-section">
-    <a href="index.html">
-      <img src="logo.png" alt="Luxury Perfumes Logo" />
+  <header>
+    <a class="logo" href="index.html">
+      <img src="logo.png" alt="logo">
+      <div class="brand">Mosaab fragrance</div>
     </a>
-    <h1>Mosaab fragrance</h1>
-  </div>
-  <div class="gallery-section">
-    <div class="gallery-title">Parfums Homme</div>
-    <div class="gallery-grid" id="gallery-men"></div>
-    <div class="gallery-title" style="margin-top:36px;">Parfums Femme</div>
-    <div class="gallery-grid" id="gallery-women"></div>
-  </div>
-  <footer>© 2025</footer>
+    <div class="spacer"></div>
+    <div class="controls" role="search">
+      <div class="search" aria-label="Search perfumes">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6"></circle></svg>
+        <input id="searchInput" placeholder="Recherche... (ex: Naxos, Le Beau)" />
+      </div>
+      <a class="theme-pill" href="product.html">Voir tout</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Hero">
+      <div class="hero-left">
+        <div class="hero-title">Collection Premium — Black & Gold</div>
+        <div class="hero-sub">Sélection d'élixirs et best-sellers, préparés pour les soirées et les cadeaux raffinés.</div>
+        <a class="cta" href="#men-grid">Découvrir les parfums</a>
+      </div>
+      <div class="hero-right">
+        <div class="hero-bottle" aria-hidden>
+          <img src="img/valentino/1.jpg" alt="" onerror="this.src='https://via.placeholder.com/220x220?text=Fragrance'">
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title">Parfums Homme</div>
+    <div class="grid" id="men-grid" role="list"></div>
+
+    <div class="section-title" style="margin-top:6px">Parfums Femme</div>
+    <div class="grid" id="women-grid" role="list"></div>
+  </main>
+
+  <footer>© 2025 Mosaab fragrance · Tous droits réservés</footer>
+
   <script>
-    function escapeHTML(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
+    // Data (kept same folders & names)
     const products = [
       // MEN
-      { name: '9PM Afnan', folder: '9pmafnan', oldPrice: '550 MAD', newPrice: '470 MAD', type: 'men', description: 'A bold, long-lasting fragrance with notes of apple, cinnamon, and vanilla. Perfect for evening wear.' },
-      { name: 'Le Male Elixir', folder: 'elexir', oldPrice: '1600 MAD', newPrice: '1500 MAD', type: 'men', description: 'A modern twist on a classic scent, blending lavender, mint, and warm woods for a seductive aura.' },
+      { name: '9PM Afnan', folder: '9pmafnan', oldPrice: '550 MAD', newPrice: '470 MAD', type: 'men', description: 'A bold, long-lasting fragrance with notes of apple, cinnamon, and vanilla.' },
+      { name: 'Le Male Elixir', folder: 'elexir', oldPrice: '1600 MAD', newPrice: '1500 MAD', type: 'men', description: 'A modern twist on a classic scent, blending lavender, mint, and warm woods.' },
       { name: 'Erba Pura', folder: 'erbapurra', oldPrice: '1200 MAD', newPrice: '1100 MAD', type: 'men', description: '' },
       { name: 'Le Beau EDP', folder: 'lebeauedp', oldPrice: '1300 MAD', newPrice: '1200 MAD', type: 'men', description: '' },
       { name: 'Le Beau EDT', folder: 'lebeauedt', oldPrice: '1100 MAD', newPrice: '1000 MAD', type: 'men', description: '' },
@@ -262,37 +201,58 @@
       { name: 'The One', folder: 'theone', oldPrice: '1700 MAD', newPrice: '1600 MAD', type: 'women', description: '' }
     ];
 
-    function getImagePath(product) {
-      // Always use 1.jpg for gallery
-      const folder = product.type === 'men' ? 'img' : 'imgg';
-      return `${folder}/${escapeHTML(product.folder)}/1.jpg`;
+    function escapeHTML(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+    function getImagePath(p){
+      const folder = p.type === 'men' ? 'img' : 'imgg';
+      return `${folder}/${encodeURIComponent(p.folder)}/1.jpg`;
     }
 
-    function renderGallery(products, type, containerId) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = products
-        .filter(p => p.type === type)
-        .map(p => `
-          <div class="product-card">
-            <div class="product-image-wrapper">
-              <a href="product.html?folder=${encodeURIComponent(p.folder)}">
-                <img src="${getImagePath(p)}" alt="${escapeHTML(p.name)}" class="product-image" loading="lazy"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/160x200?text=No+Image';" />
-              </a>
-            </div>
-            <div class="product-title">${escapeHTML(p.name)}</div>
-            <div class="product-type">${p.type === 'men' ? 'Homme' : 'Femme'}</div>
-            <div class="product-prices">
-              ${p.oldPrice ? `<span class="old-price">${escapeHTML(p.oldPrice)}</span>` : ''}
-              <span class="new-price">${escapeHTML(p.newPrice)}</span>
-            </div>
-            <a class="product-link" href="product.html?folder=${encodeURIComponent(p.folder)}">Voir le parfum</a>
-          </div>
-        `).join('');
+    function createCard(p){
+      const a = document.createElement('a');
+      a.className='card';
+      a.href = `product.html?folder=${encodeURIComponent(p.folder)}`;
+      a.setAttribute('role','listitem');
+      a.innerHTML = `
+        <div class="img-wrap">
+          <img loading="lazy" src="${getImagePath(p)}" alt="${escapeHTML(p.name)}" onerror="this.onerror=null;this.src='https://via.placeholder.com/160x200?text=No+Image'"/>
+        </div>
+        <div class="name">${escapeHTML(p.name)}</div>
+        <div class="meta">${p.type === 'men' ? 'Homme' : 'Femme'}</div>
+        <div class="prices">
+          ${p.oldPrice? `<span class="old">${escapeHTML(p.oldPrice)}</span>` : ''}
+          <span class="new">${escapeHTML(p.newPrice)}</span>
+        </div>
+        <div><span class="viewbtn" aria-hidden>Voir</span></div>
+      `;
+      return a;
     }
 
-    renderGallery(products, 'men', 'gallery-men');
-    renderGallery(products, 'women', 'gallery-women');
+    const menGrid = document.getElementById('men-grid');
+    const womenGrid = document.getElementById('women-grid');
+
+    products.forEach(p => {
+      const el = createCard(p);
+      if (p.type === 'men') menGrid.appendChild(el);
+      else womenGrid.appendChild(el);
+    });
+
+    // Basic client search (name)
+    document.getElementById('searchInput').addEventListener('input', function(){
+      const q = this.value.trim().toLowerCase();
+      const filter = (p) => p.name.toLowerCase().includes(q) || (p.description||'').toLowerCase().includes(q);
+      menGrid.innerHTML = ''; womenGrid.innerHTML = '';
+      products.filter(p => p.type === 'men' && filter(p)).forEach(p => menGrid.appendChild(createCard(p)));
+      products.filter(p => p.type === 'women' && filter(p)).forEach(p => womenGrid.appendChild(createCard(p)));
+      if(q===''){
+        // reset to all if empty
+        menGrid.innerHTML=''; womenGrid.innerHTML='';
+        products.forEach(p => {
+          const el = createCard(p);
+          if (p.type==='men') menGrid.appendChild(el); else womenGrid.appendChild(el);
+        });
+      }
+    });
   </script>
 </body>
 </html>
