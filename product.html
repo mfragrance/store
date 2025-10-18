@@ -1,458 +1,73 @@
-Certainly! I'll modernize your product detail page with a cleaner, more contemporary design using CSS Grid/Flexbox, subtle animations, and improved UX. I'll keep your black & gold theme but make it lighter, more spacious, and visually balanced.
-
----
-
-### What I improved:
-- **Layout:** Responsive grid with better spacing and alignment.
-- **Typography:** Larger headings, better font weights, and spacing.
-- **Buttons:** Modern pill-shaped buttons with hover/focus states.
-- **Image gallery:** Smooth fade transitions, bigger thumbnails with hover scale.
-- **Quantity selector:** Cleaner, accessible buttons with keyboard focus styles.
-- **Notification:** Slide down/up with fade, more visible.
-- **Accessibility:** Improved alt texts, aria-labels, and keyboard focus.
-- **Share & print:** Clearer links with icons.
-- **Mobile:** Optimized layout stacking and spacing.
-
----
-
-Here is the full updated code for your **product.html** page:
-
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mosaab Fragrance — Détail Produit</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0a0a0a;
-      --panel: rgba(212, 175, 55, 0.1);
-      --gold: #d4af37;
-      --gold-light: #f0d87a;
-      --muted: #a39b93;
-      --radius: 18px;
-      --shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-      --trans: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-      --font-sans: 'Poppins', sans-serif;
-      --font-serif: 'Playfair Display', serif;
+    :root{
+      --bg:#040404;
+      --panel:rgba(255,255,255,0.02);
+      --gold:#d4af37;
+      --muted:#a39b93;
+      --radius:16px;
+      --shadow:0 12px 40px rgba(0,0,0,0.7);
+      --trans:280ms cubic-bezier(.2,.9,.3,1);
     }
-
-    /* Reset & base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      background: linear-gradient(180deg, #050505, #121212);
-      color: #f6f4f1;
-      font-family: var(--font-sans);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.5;
-      -webkit-text-size-adjust: 100%;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      transition: color var(--trans);
-    }
-    a:hover,
-    a:focus {
-      color: var(--gold-light);
-      outline: none;
-    }
-    img {
-      display: block;
-      max-width: 100%;
-      border-radius: var(--radius);
-      user-select: none;
-      pointer-events: none;
-    }
-    button {
-      font-family: var(--font-sans);
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      background: var(--gold);
-      color: #0b0b0b;
-      border-radius: 9999px;
-      padding: 0.6em 1.4em;
-      font-size: 1rem;
-      transition: background-color var(--trans), transform var(--trans);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-      user-select: none;
-    }
-    button:hover,
-    button:focus {
-      background-color: var(--gold-light);
-      transform: translateY(-3px);
-      outline: none;
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
-    }
-    button:disabled {
-      background-color: #555;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
-
-    /* Container */
-    .wrap {
-      max-width: 1100px;
-      margin: 2rem auto 3rem;
-      padding: 0 1rem;
-    }
-
-    /* Header top */
-    .top {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.3rem;
-      font-family: var(--font-serif);
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      user-select: none;
-    }
-    .logo img {
-      width: 56px;
-      height: 56px;
-      border-radius: var(--radius);
-      object-fit: cover;
-      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.1);
-      pointer-events: auto;
-    }
-    .back {
-      margin-left: auto;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.5em 1em;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      background: rgba(255, 255, 255, 0.02);
-      user-select: none;
-      transition: background-color var(--trans), color var(--trans);
-    }
-    .back:hover,
-    .back:focus {
-      background: var(--gold);
-      color: #0b0b0b;
-      outline: none;
-    }
-
-    /* Product card grid */
-    .product-card {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 2.5rem;
-      background: var(--panel);
-      padding: 2rem;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: var(--shadow);
-      align-items: start;
-    }
-
-    /* Left side - images */
-    .left {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      user-select: none;
-    }
-    .main-img {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 19 / 21;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: #111;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-      cursor: zoom-in;
-      transition: transform var(--trans);
-    }
-    .main-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      will-change: opacity, transform;
-    }
-    .main-img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Thumbnails */
-    .thumbs {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: start;
-    }
-    .thumbs img {
-      width: 72px;
-      height: 72px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 2.5px solid transparent;
-      cursor: pointer;
-      transition: border-color var(--trans), transform var(--trans);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    }
-    .thumbs img.selected,
-    .thumbs img:hover,
-    .thumbs img:focus-visible {
-      border-color: var(--gold);
-      transform: scale(1.1);
-      outline-offset: 2px;
-      outline: 2px solid var(--gold-light);
-    }
-
-    /* Right side - details */
-    .right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      user-select: text;
-    }
-    .title {
-      font-family: var(--font-serif);
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1.1;
-      user-select: text;
-    }
-    .meta {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      user-select: text;
-    }
-    .prices {
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      user-select: text;
-    }
-    .old {
-      color: #8b8680;
-      text-decoration: line-through;
-      font-weight: 400;
-    }
-    .new {
-      font-weight: 700;
-      color: #fff;
-    }
-    .desc {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.6;
-      user-select: text;
-      white-space: pre-line;
-    }
-
-    /* Quantity selector */
-    .qty-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .qty-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 9999px;
-      background: var(--gold);
-      color: #0b0b0b;
-      font-weight: 700;
-      font-size: 1.4rem;
-      line-height: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      user-select: none;
-      transition: background-color var(--trans), transform var(--trans);
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-    }
-    .qty-btn:hover,
-    .qty-btn:focus {
-      background-color: var(--gold-light);
-      transform: translateY(-3px);
-      outline: none;
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
-    }
-    .qty-btn:disabled {
-      background-color: #555;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
-    .qty-display {
-      min-width: 48px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      text-align: center;
-      user-select: none;
-      color: #fff;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* Add to cart button */
-    .add-btn {
-      flex-grow: 1;
-      max-width: 220px;
-      padding: 0.75em 1.6em;
-      border-radius: 9999px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      border: none;
-      color: #0b0b0b;
-      font-weight: 800;
-      font-size: 1.1rem;
-      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-      user-select: none;
-      transition: background-color var(--trans), transform var(--trans);
-      cursor: pointer;
-    }
-    .add-btn:hover,
-    .add-btn:focus {
-      background: linear-gradient(90deg, var(--gold-light), var(--gold));
-      transform: translateY(-4px);
-      outline: none;
-      box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
-    }
-
-    /* Share & print */
-    .share {
-      font-size: 0.95rem;
-      color: var(--muted);
-      user-select: none;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .share a {
-      color: var(--gold);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3em;
-      user-select: text;
-      transition: color var(--trans);
-    }
-    .share a:hover,
-    .share a:focus {
-      color: var(--gold-light);
-      outline: none;
-    }
-    .share a svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-      user-select: none;
-    }
-
-    /* Notification */
-    #notif {
-      position: fixed;
-      left: 50%;
-      top: 1.5rem;
-      transform: translateX(-50%) translateY(-100%);
-      background: var(--gold);
-      color: #080808;
-      padding: 1rem 2rem;
-      border-radius: var(--radius);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-      font-weight: 700;
-      font-size: 1rem;
-      opacity: 0;
-      pointer-events: none;
-      user-select: none;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      z-index: 9999;
-    }
-    #notif.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-      pointer-events: auto;
-    }
-
-    /* Footer */
-    footer {
-      max-width: 1100px;
-      margin: 3rem auto 4rem;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.95rem;
-      user-select: none;
-    }
-
-    /* Responsive */
-    @media (max-width: 920px) {
-      .product-card {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .main-img {
-        aspect-ratio: auto;
-        height: 320px;
-      }
-      .add-btn {
-        max-width: 100%;
-      }
-      .top {
-        gap: 0.5rem;
-      }
-      .back {
-        margin-left: 0;
-        width: 100%;
-        text-align: center;
-      }
-    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#030303,#0b0b0b);color:#f6f4f1;font-family:'Poppins',sans-serif;min-height:100vh}
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:24px auto;padding:16px}
+    .top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .logo img{width:56px;height:56px;border-radius:12px;object-fit:cover;box-shadow:0 6px 18px rgba(212,175,55,0.06)}
+    .brand{font-family:'Playfair Display',serif;font-size:1.3rem;background:linear-gradient(90deg,var(--gold),#ffd87a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .back{margin-left:auto;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.01)}
+    .product-card{display:flex;gap:28px;background:var(--panel);padding:22px;border-radius:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow);align-items:flex-start;flex-wrap:wrap}
+    .left{flex:1;min-width:280px}
+    .right{flex:1.1;min-width:300px;display:flex;flex-direction:column}
+    .main-img{width:380px;height:420px;border-radius:14px;overflow:hidden;background:#080808;display:flex;align-items:center;justify-content:center;position:relative}
+    .main-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 420ms}
+    .thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .thumbs img{width:72px;height:72px;border-radius:10px;object-fit:cover;border:2px solid transparent;cursor:pointer;transition:transform var(--trans);background:#0a0a0a}
+    .thumbs img.selected{border-color:var(--gold);transform:scale(1.05)}
+    .title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);margin-bottom:8px}
+    .meta{color:var(--muted);margin-bottom:12px}
+    .prices{margin-bottom:10px}
+    .old{color:#8b8680;text-decoration:line-through;margin-right:10px}
+    .new{font-weight:700;font-size:1.2rem}
+    .desc{color:var(--muted);line-height:1.6;margin-bottom:18px}
+    .qty-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .qty-btn{width:40px;height:40px;border-radius:10px;border:none;background:var(--gold);color:#0b0b0b;font-weight:700;cursor:pointer;transition:transform var(--trans)}
+    .qty-display{min-width:48px;text-align:center;font-weight:700}
+    .add-btn{padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--gold),#ffd87a);border:none;color:#0b0b0b;font-weight:800;cursor:pointer}
+    .share{margin-top:12px;color:var(--muted);font-size:0.95rem}
+    #notif{position:fixed;left:50%;top:22px;transform:translateX(-50%);background:var(--gold);color:#080808;padding:12px 18px;border-radius:12px;display:none;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+    footer{max-width:1100px;margin:26px auto 40px auto;color:var(--muted);text-align:center}
+    @media(max-width:920px){.main-img{width:100%;height:320px}.product-card{flex-direction:column}.left,.right{min-width:unset}}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="top" role="banner">
-      <a class="logo" href="index.html" aria-label="Retour à la page d'accueil">
-        <img src="logo.png" alt="Logo Mosaab Fragrance" />
-        <div class="brand">Mosaab fragrance</div>
-      </a>
-      <a class="back" href="index.html" title="Retour à l'accueil">← Retour à l'accueil</a>
-    </header>
+    <div class="top">
+      <a class="logo" href="index.html"><img src="logo.png" alt=""><div class="brand">Mosaab fragrance</div></a>
+      <a class="back" href="index.html" title="Retour">← Retour à l'accueil</a>
+    </div>
 
-    <main id="productArea" class="product-card" role="main" aria-live="polite" aria-label="Détail du produit">
+    <div id="productArea" class="product-card" role="region" aria-live="polite">
       <!-- JS inject -->
-    </main>
+    </div>
   </div>
 
-  <div id="notif" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="notif" role="status" aria-live="polite"></div>
 
   <footer>© 2025 Mosaab fragrance · Luxe Collection</footer>
 
   <script>
-    // Product data (same as your original)
+    // same product list (folders unchanged)
     const products = [
+      // MEN
       { name: '9PM Afnan', folder: '9pmafnan', oldPrice: '550 MAD', newPrice: '470 MAD', type: 'men', description: 'A bold, long-lasting fragrance with notes of apple, cinnamon, and vanilla. Perfect for evening wear.' },
       { name: 'Le Male Elixir', folder: 'elexir', oldPrice: '1600 MAD', newPrice: '1500 MAD', type: 'men', description: 'A modern twist on a classic scent, blending lavender, mint, and warm woods for a seductive aura.' },
       { name: 'Erba Pura', folder: 'erbapurra', oldPrice: '1200 MAD', newPrice: '1100 MAD', type: 'men', description: '' },
@@ -465,7 +80,122 @@ Here is the full updated code for your **product.html** page:
       { name: 'Ultra Male', folder: 'ultamale', oldPrice: '900 MAD', newPrice: '820 MAD', type: 'men', description: '' },
       { name: 'Valentino', folder: 'valentino', oldPrice: '1000 MAD', newPrice: '900 MAD', type: 'men', description: '' },
       { name: 'Versace Eros', folder: 'versaccceeros', oldPrice: '1100 MAD', newPrice: '1000 MAD', type: 'men', description: '' },
+      // WOMEN
       { name: 'Divine', folder: 'divine', oldPrice: '1200 MAD', newPrice: '1100 MAD', type: 'women', description: '' },
       { name: 'Dolce Gabbana Light Blue', folder: 'dolcegbnlightblue', oldPrice: '1300 MAD', newPrice: '1200 MAD', type: 'women', description: '' },
       { name: 'Gabrielle Chanel Essence', folder: 'gabriellechanelessence', oldPrice: '1400 MAD', newPrice: '1300 MAD', type: 'women', description: '' },
-      { name: 'JPG Belle', folder: 'jpgbelle', oldPrice: '1500 MAD', newPrice: '1400 MAD', type: 'women', description:
+      { name: 'JPG Belle', folder: 'jpgbelle', oldPrice: '1500 MAD', newPrice: '1400 MAD', type: 'women', description: '' },
+      { name: 'Scandal Gold EDP', folder: 'scandalgoldedp', oldPrice: '1600 MAD', newPrice: '1500 MAD', type: 'women', description: '' },
+      { name: 'The One', folder: 'theone', oldPrice: '1700 MAD', newPrice: '1600 MAD', type: 'women', description: '' }
+    ];
+
+    function escapeHTML(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+    function getFolderType(t){ return t === 'men' ? 'img' : 'imgg'; }
+    function getProductFolderFromURL(){ return new URLSearchParams(window.location.search).get('folder'); }
+    function findProduct(folder){
+      if(!folder) return null;
+      folder = folder.trim().toLowerCase();
+      return products.find(p => p.folder.trim().toLowerCase() === folder) || null;
+    }
+
+    // Cart helper (localStorage)
+    function loadCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){return []} }
+    function saveCart(c){ localStorage.setItem('cart', JSON.stringify(c)); }
+    function addToCart(product,qty){
+      const cart = loadCart();
+      const idx = cart.findIndex(i => i.folder === product.folder);
+      if(idx>-1) cart[idx].qty += qty;
+      else cart.push({ name: product.name, price: product.newPrice, qty, folder: product.folder, type: product.type });
+      saveCart(cart);
+    }
+
+    function showNotif(text){
+      const n = document.getElementById('notif');
+      n.textContent = text; n.style.display='block'; n.style.opacity='1';
+      setTimeout(()=>{ n.style.opacity='0'; setTimeout(()=> n.style.display='none',300); },1800);
+    }
+
+    // Render
+    (function(){
+      const folder = getProductFolderFromURL();
+      const product = findProduct(folder);
+      const root = document.getElementById('productArea');
+      if(!product){
+        root.innerHTML = `<div style="width:100%;text-align:center;color:var(--gold)"><h2>Produit introuvable</h2><p style="color:var(--muted)">Choisissez un parfum depuis la page d'accueil.</p></div>`;
+        return;
+      }
+
+      const base = getFolderType(product.type);
+      const images = [1,2].map(i => `${base}/${encodeURIComponent(product.folder)}/${i}.jpg`);
+      let current = 0;
+
+      root.innerHTML = `
+        <div class="left">
+          <div class="main-img" id="mainImgWrap" aria-hidden>
+            <img id="mainImg" src="${images[0]}" alt="${escapeHTML(product.name)}" onerror="this.onerror=null;this.src='https://via.placeholder.com/380x420?text=No+Image'">
+          </div>
+          <div class="thumbs" id="thumbs">
+            ${images.map((s,i)=>`<img loading="lazy" src="${s}" data-idx="${i}" alt="thumb ${i+1}" class="${i===0?'selected':''}" onerror="this.onerror=null;this.src='https://via.placeholder.com/72x72?text=-'">`).join('')}
+          </div>
+        </div>
+        <div class="right">
+          <div class="title">${escapeHTML(product.name)}</div>
+          <div class="meta">${product.type === 'men' ? 'Homme' : 'Femme'}</div>
+          <div class="prices">
+            ${product.oldPrice? `<span class="old">${escapeHTML(product.oldPrice)}</span>`:''}
+            <span class="new">${escapeHTML(product.newPrice)}</span>
+          </div>
+          <div class="desc">${escapeHTML(product.description || 'Parfum d’exception - intensité moyenne à forte. Idéal pour soirée et cadeau.')}</div>
+
+          <div class="qty-row" aria-label="Quantité">
+            <button class="qty-btn" id="dec">-</button>
+            <div class="qty-display" id="qty">1</div>
+            <button class="qty-btn" id="inc">+</button>
+            <button class="add-btn" id="addToCart">Ajouter au panier</button>
+          </div>
+
+          <div class="share">Partager: <a href="#" id="shareLink">Copier lien</a> · <a href="#" onclick="window.print();return false">Imprimer</a></div>
+        </div>
+      `;
+
+      // interactions
+      const mainImg = document.getElementById('mainImg');
+      document.querySelectorAll('#thumbs img').forEach(t=>{
+        t.addEventListener('click', e=>{
+          const idx = Number(t.dataset.idx);
+          if(idx === current) return;
+          // fade
+          mainImg.style.transform='scale(1.04)';
+          mainImg.style.opacity='0';
+          setTimeout(()=>{ mainImg.src = images[idx]; mainImg.style.transform='scale(1)'; mainImg.style.opacity='1'; },220);
+          document.querySelectorAll('#thumbs img').forEach(tt=>tt.classList.remove('selected'));
+          t.classList.add('selected');
+          current = idx;
+        });
+      });
+
+      const qtyEl = document.getElementById('qty');
+      document.getElementById('dec').addEventListener('click', ()=>{
+        let v = parseInt(qtyEl.textContent,10);
+        if(v>1) qtyEl.textContent = v-1;
+      });
+      document.getElementById('inc').addEventListener('click', ()=>{ qtyEl.textContent = parseInt(qtyEl.textContent,10)+1; });
+
+      document.getElementById('addToCart').addEventListener('click', ()=>{
+        const qty = parseInt(qtyEl.textContent,10);
+        addToCart(product, qty);
+        showNotif(`${qty} x "${product.name}" ajouté au panier`);
+      });
+
+      // share link copy
+      document.getElementById('shareLink').addEventListener('click', e=>{
+        e.preventDefault();
+        const url = location.href;
+        navigator.clipboard?.writeText(url).then(()=> showNotif('Lien copié!'), ()=> showNotif('Impossible de copier'));
+      });
+
+    })();
+  </script>
+</body>
+</html>
